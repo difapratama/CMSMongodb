@@ -22,7 +22,8 @@
     "mocha": "^6.0.2",
     "mongoose": "^5.4.16",
     "morgan": "^1.9.1",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "should": "^13.2.3"
   },
   "main": "app.js",
   "author": "",
