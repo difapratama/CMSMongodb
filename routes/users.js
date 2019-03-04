@@ -5,11 +5,11 @@ let jwt = require('jsonwebtoken');
 let config = require('../config/config');
 let bcrypt = require('bcrypt');
 let helpers = require('../helpers/util')
-let Data = require('../models/data');
+// let Data = require('../models/data');
 
 
 /* GET users listing. */
-router.post('/api/users/register', function (req, res, next) {
+router.post('/register', function (req, res, next) {
 
   if (req.body.password == req.body.retypepassword) {
 
@@ -45,7 +45,7 @@ router.post('/api/users/register', function (req, res, next) {
   }
 });
 
-router.post('/api/users/login', function (req, res, next) {
+router.post('/login', function (req, res, next) {
   User.findOne({ email: req.body.email }).then(user => {
     if (!user) {
       res.json({
@@ -76,14 +76,14 @@ router.post('/api/users/login', function (req, res, next) {
   }).catch(err => console.log(err))
 })
 
-router.post('/api/users/check', helpers.token, (req, res, next) => {
+router.post('/check', helpers.token, (req, res, next) => {
   res.status(201).json({
     token: req.decoded,
     valid: true
   })
 })
 
-router.get('/api/users/destroy', (req, res, next) => {
+router.get('/destroy', (req, res, next) => {
   User.findOne({ email: req.query.email }, (err, user) => {
     User.updateOne({ email: req.query.email }, { $set: { token: null } }, (err) => {
       if (err) return res.send(err);

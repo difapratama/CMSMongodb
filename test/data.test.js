@@ -11,7 +11,7 @@ chai.use(chaiHTTP);
 
 describe('datas', function () {
 
-    // Data.collection.drop();
+    Data.collection.drop();
 
     it('1. Add data with post method', (done) => {
         chai.request(server)
@@ -34,21 +34,29 @@ describe('datas', function () {
             })
     })
 
-    // it('2. Read All Data with GET Method', function (done) {
+    // it('4. EDIT data metode get', (done) => {
     //     chai.request(server)
-    //         .get('/api/data/')
+    //         .post('/api/data/search')
     //         .send({ 'letter': 'A', 'frequency': '1.1' })
     //         .end((err, res) => {
-    //             res.should.have.status(200);
-    //             res.should.be.json;
-    //             res.body.should.be.a('array');
-    //             res.body[0].should.have.property('_id');
-    //             res.body[0].should.have.property('letter');
-    //             res.body[0].should.have.property('frequency');
-    //             res.body[0]._id.should.equal(res.body[0]._id);
-    //             res.body[0].letter.should.equal(res.body[0].letter);
-    //             res.body[0].frequency.should.equal(res.body[0].frequency);
-    //             done();
+    //             chai.request(server)
+    //                 .put('/api/data/' + res.body[0]._id)
+    //                 .send({ 'letter': res.body[0].letter, 'frequency': '1.5' })
+    //                 .end((err, res) => {
+    //                     res.should.have.status(201);
+    //                     res.should.be.json;
+    //                     res.body.should.be.a('object');
+    //                     res.body.data.should.have.property('_id')
+    //                     res.body.data.should.have.property('frequency');
+    //                     res.body.should.have.property('status')
+    //                     res.body.should.have.property('message')
+    //                     res.body.status.should.equal('success');
+    //                     res.body.message.should.equal('data have been updated');
+    //                     res.body.data._id.should.equal(res.body.data._id);
+    //                     res.body.data.letter.should.equal(res.body.data.letter);
+    //                     res.body.data.frequency.should.equal(res.body.data.frequency);
+    //                     done();
+    //                 })
     //         })
     // })
 

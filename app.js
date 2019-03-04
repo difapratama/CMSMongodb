@@ -14,10 +14,11 @@ mongoose.connect('mongodb://localhost:27017/cms', {
   process.exit();
 })
 
-// var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var datasRouter = require('./routes/data');
-// var dataDates = require(./)
+var dateRouter = require('./routes/dataDate');
+var mapsRouter = require('./routes/maps');
 
 var app = express();
 
@@ -31,9 +32,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', indexRouter);
-app.use('/', usersRouter);
+app.use('/', indexRouter);
+app.use('/api/users', usersRouter);
 app.use('/api/data', datasRouter);
+app.use('/api/datadate', dateRouter);
+app.use('/api/maps', mapsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

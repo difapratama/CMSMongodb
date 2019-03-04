@@ -1,10 +1,5 @@
 var express = require('express');
 var router = express.Router();
-let User = require('../models/user')
-let jwt = require('jsonwebtoken');
-let config = require('../config/config');
-let bcrypt = require('bcrypt');
-let helpers = require('../helpers/util')
 let Data = require('../models/data');
 
 // =================== browse =================== //
@@ -57,10 +52,8 @@ router.put('/:id', (req, res, next) => {
     let id = req.params.id;
     console.log(id);
 
-
     Data.findOneAndUpdate({ _id: req.params.id },
-        { letter: req.body.letter, frequency: req.body.frequency }, (err, dataInfo) => {
-
+        { letter: req.body.letter, frequency: Number(req.body.frequency) }, (err, dataInfo) => {
             if (err) {
                 res.json(err);
             } else {
@@ -80,7 +73,7 @@ router.put('/:id', (req, res, next) => {
 // =================== ADD =================== //
 
 router.post('/', (req, res, next) => {
-    Data.create({ letter: req.body.letter, frequency: req.body.frequency },
+    Data.create({ letter: req.body.letter, frequency: Number(req.body.frequency) },
         function (err, result) {
             if (err)
                 res.json(err)
